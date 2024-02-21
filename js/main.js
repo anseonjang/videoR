@@ -1,53 +1,68 @@
-//모든 article 요소들을 변수 items에 저장
+// 모든 article items에 저장
 const items = document.querySelectorAll("article");
 const aside = document.querySelector("aside");
 const close = aside.querySelector("span");
 
-//items의 갯수만큼 반복을 돌면 반복 
-for(let el of items){    
-    //for...of 문은 JavaScript에서 반복 가능한(iterable) 객체를 순회(iterate)하는 데 사용 
-    //현재 반복돌고 있는 article요소에 mouseenter 이벤트 발생 시    
-    el.addEventListener("mouseenter", e=>{
-        //자식인 video요소 재생
-        e.currentTarget.querySelector("video").play();  // .play();미디어 요소를 재생하는 것
+// for문을 이용하여 items의 갯수만큼 반복을 돌면 반복
+// for..of : 객체 반복시 사용
+// el 은 items인 article의 각각의 요소
+for (let el of items) {
+    el.addEventListener("mouseenter", e => {
+        e.currentTarget.querySelector("video").play();
+        // play() 미디어 재생 메서드
+        // .currentTarget ->(속성) 현재 이벤트 처리중인 요소 
+        // e => 이벤트 핸들러 함수의 매개변수
+    });
+    el.addEventListener("mouseleave", e => {
+        e.currentTarget.querySelector("video").pause();
+        // pause() 미디어 정지 메서드
     });
 
-    //현재 반복돌고 있는 article요소에 mouseleave 이벤트 발생 시 
-    el.addEventListener("mouseleave", e=>{
-        //자식인 video요소 일시정지
-        e.currentTarget.querySelector("video").pause(); // 미디어 요소를 일시 정지하는 메서드
-    });
-
-    //현재 반복돌고 있는 article요소에 click 이벤트 발생 시
-    el.addEventListener("click", e=>{     
-        //제목과 본문의 내용, 그리고 video요소의 src값을 변수에 저장  
+    // article 클릭시 
+    el.addEventListener("click", e => {
         let tit = e.currentTarget.querySelector("h2").innerText;
-        // innerText 속성은 DOM 요소의 텍스트 내용을 나타내는 속성입니다. 이 속성은 해당 요소의 자식 요소를 제외한 텍스트 내용만 반환합니다. 
-        // HTML 마크업을 무시하고 텍스트 내용만을 반환
         let txt = e.currentTarget.querySelector("p").innerText;
         let vidSrc = e.currentTarget.querySelector("video").getAttribute("src");
-        // getAttribute() 메서드는 지정된 속성 값을 반환하는 메서드
 
-        //aside 요소 안쪽의 콘텐츠에 위의 변수 내용을 적용
         aside.querySelector("h3").innerText = tit;
         aside.querySelector("p").innerText = txt;
-        aside.querySelector("video").setAttribute("src", vidSrc);
-        // setAttribute 메서드는 DOM 요소의 지정된 속성에 값을 설정하는 메서드
+        aside.querySelector("video").src = vidSrc; 
 
-        //aside 요소 안쪽의 동영상을 재생하고 aside요소에 on을 붙여 팝업 패널 활성화
         aside.querySelector("video").play();
         aside.classList.add("on");
     });
+}
+// 닫기버튼 클릭시 닫힘
+close.addEventListener("click", () => {
+    aside.classList.remove("on");
+    aside.querySelector("video").pause();
+});
+// aside 클릭시 닫힘
+aside.addEventListener("click", () => {
+    aside.classList.remove("on");
+    aside.querySelector("video").pause();
+});
 
-    //닫기 버튼 클릭 시 
-    close.addEventListener("click", ()=>{
-        //aside 요소에 클래스 on을 제거해 비활성화 하고 안쪽의 영상을 재생중지
-        aside.classList.remove("on");
-        aside.querySelector("video").pause();
+
+
+$(function(){
+    // 버튼클릭시 검색창 나옴
+    $('#searchButton').click(function () {
+        $('#searchContainer').toggle(); // toggle - 숨기거나 보여줌
     });
-    aside.addEventListener("click", () => {
-        //aside 요소에 클래스 on을 제거해 비활성화 하고 안쪽의 영상을 재생중지
-        aside.classList.remove("on");
-        aside.querySelector("video").pause();
-      });
-}        
+    // 바탕 클릭시 검색창 닫힘
+    // html 문서 클릭시,
+    // 클릭된 요소를 기준으로 가장 가까운 조상 찾음
+    // 찾은 요소 없을시, 
+    // 컨테이너 숨김 
+    // 그래서, 내부 영역이 아닌 바깥 영역 클릭시 검색창이 숨겨지는 구조가 됨
+    $(document).click(function (event){
+        if(!$(event.target).closest('#searchContainer, #searchButton').length){
+            $('#searchContainer').hide(); 
+        }
+        // !$ 부정연산자
+        // .closest - 조상 요소 탐색
+        // .target - 이벤트 발생된 요소 가리킴
+    });
+});
+

@@ -1,80 +1,100 @@
 @charset "utf-8";
 @import url("https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@100&display=swap");
+
 * {
-	margin: 0px;
-	padding: 0px;
-	box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
 }
 
 ul,
 ol,
 li {
-	list-style: none;
+    list-style: none;
 }
 
 a {
-	text-decoration: none;
-	
+    text-decoration: none;
+
 }
 
 main {
-	display: flex; /*header와 section을 좌우배치하기 위해 flex 설정*/
-	width: 100%;
-	height: 100vh;
-	background: #333;
-	
+    display: flex;
+    /*header와 section을 좌우배치하기 위해 flex 설정*/
+    width: 100%;
+    height: 100vh;
+    background: #333;
+
 }
+
 main header {
-	width: 20%;
-	height: 100%;
-	padding: 10vh 5vw;
-	display: flex; 
-	flex-wrap: wrap;  
-	align-content: space-between; /*세로축은 상단 하단 양끝으로 콘텐츠를 배치*/
-	justify-content: center; /*가로축은 가운대로 배치*/
-	position: relative;
-	z-index: 3; /*section요소와 aside팝업요소보다 위에 배치하기위해 3 지정*/  
+    width: 20%;
+    height: 100%;
+    padding: 10vh 5vw;
+    display: flex;
+    flex-wrap: wrap;
+    /*세로축은 상단 하단 양끝으로 콘텐츠를 배치*/
+    justify-content: center;
+    /*가로축은 가운대로 배치*/
+    position: relative;
+    z-index: 3;
+    /*section요소와 aside팝업요소보다 위에 배치하기위해 3 지정*/
 }
+
 main header h1 {
-	font-size: 0px;
-	color: #fff;
+    font-size: 0px;
+    color: #fff;
 }
+
 main header h1 i {
-	font-size: 5vw;
-	margin-bottom: 15px;
+    font-size: 5vw;
+    margin-bottom: 15px;
 }
+
 main header h1 span {
-	font: normal 0.8vw/1 "arial"; 
+    font: normal 0.8vw/1 "arial";
 }
+
 main header address {
-	font: normal 11px/1.2 "arial";
-	color: #888;
+    font: normal 11px/1.2 "arial";
+    color: #888;
+    position: absolute;
+    /* 추가 */
+    bottom: 10vh;
+    /* 추가 */
 }
 
 main nav {
-	position: absolute;
-	top: 10vh;
-	right: 5vw;
-	z-index: 3; /*section요소와 aside팝업요소보다 위에 배치하기위해 3 지정*/ 
+    position: absolute;
+    top: 10vh;
+    right: 5vw;
+    z-index: 3;
+    /*section요소와 aside팝업요소보다 위에 배치하기위해 3 지정*/
 }
+
 main nav ul {
-	display: flex; /*자식 li요소를 좌우 배치되도록 설정*/
+    display: flex;
+    /*자식 li요소를 좌우 배치되도록 설정*/
 }
+
 main nav ul li a {
-	font-size: 18px;
-	color: #bbb;
-	margin-right: 30px;
+    font-size: 18px;
+    color: #bbb;
+    margin-right: 30px;
 }
 
 
 main section {
-	width: 80%;
-	height: 100%;
-	padding-top: 15vh;
-	display: flex;
-	position: relative;
-	z-index: 1; /*aside팝업요소보다 아래 배치하기위해 1 지정*/ 
+    width: 80%;
+    height: 100%;
+    padding-top: 15vh;
+    display: flex;
+    position: relative;
+    z-index: 1;
+    /*aside팝업요소보다 아래 배치하기위해 1 지정*/
+    padding-right: 5vw;
 }
+
 /*
 opacity 1s: 이 설정은 요소의 투명도(opacity)가 변할 때의 효과를 나타냅니다. 1s는 투명도가 변하는데 걸리는 시간을 의미하며, 여기서는 1초로 설정되어 있습니다. 따라서 요소의 투명도 변화가 1초 동안 일어납니다.
 
@@ -84,34 +104,42 @@ flex 1s: 이 설정은 요소의 flex 속성이 변할 때의 효과를 나타�
 
 */
 main section article {
-	flex: 1; /*모든 article 요소의 너비를 동등하게 적용*/
-	padding: 70px 40px 100px;
-	position: relative;
-	opacity: 0.6;
-	z-index: 1;
-	transition: opacity 1s, flex 1s;
-	cursor: pointer;
-}
-main section article::before {
-	content: "";	
-	width: 80%;
-	height: 95%;
-	position: absolute;
-	background: #444;
-	top: 0px;
-	left: -200px; /*마우스 호버 전 article의 왼쪽 바깥쪽에 배치*/
-	opacity: 0; /*마우스 호버 전 투명하게 숨김 처리*/ 
-	transition: 1s;
+    flex: 1;
+    /*모든 article 요소의 너비를 동등하게 적용*/
+    padding: 70px 40px 100px;
+    position: relative;
+    opacity: 0.6;
+    z-index: 1;
+    transition: opacity 1s, flex 1s;
+    cursor: pointer;
 }
 
-main section article:hover { /*article 요소에 호버시 변경 구문*/
-	flex: 1.5; /*호버 된 요소만 1.5배 너비를 증가*/
-	opacity: 1;
-	z-index: 2;
+main section article::before {
+    content: "";
+    width: 80%;
+    height: 95%;
+    position: absolute;
+    background: #444;
+    top: 0px;
+    left: -200px;
+    /*마우스 호버 전 article의 왼쪽 바깥쪽에 배치*/
+    opacity: 0;
+    /*마우스 호버 전 투명하게 숨김 처리*/
+    transition: 1s;
 }
-main section article:hover::before { /*article 요소에 호버시 ::before 변경 구문*/
-	left: 0px;
-	opacity: 1;
+
+main section article:hover {
+    /*article 요소에 호버시 변경 구문*/
+    flex: 1.5;
+    /*호버 된 요소만 1.5배 너비를 증가*/
+    opacity: 1;
+    z-index: 2;
+}
+
+main section article:hover::before {
+    /*article 요소에 호버시 ::before 변경 구문*/
+    left: 0px;
+    opacity: 1;
 }
 
 
@@ -119,60 +147,74 @@ main section article:hover::before { /*article 요소에 호버시 ::before 변�
 /* inner */
 
 main section article .inner {
-	width: 100%;
-	height: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	align-content: space-between; /*.txt와 figure 요소를 위 아래 끝에 배치*/
-	position: relative; /*::bofore 요소 위쪽으로 배치되게 하기 위해 position 처리 */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    /*.txt와 figure 요소를 위 아래 끝에 배치*/
+    position: relative;
+    /*::bofore 요소 위쪽으로 배치되게 하기 위해 position 처리 */
 }
 
 main section article .inner .txt {
-	width: 100%;
-	transition: 0.5s; /*호버시 전환효과 처리 */
+    width: 100%;
+    transition: 0.5s;
+    /*호버시 전환효과 처리 */
 }
+
 main section article .inner .txt h2 {
-	font: normal 2vw/1 "Alegreya Sans SC";
-	color: #fff;
-	margin-bottom: 40px;
-	padding-top: 70px;
-	transition: 1s; /*호버시 전환효과 처리 */
+    font: normal 2vw/1 "Alegreya Sans SC";
+    color: #fff;
+    margin-bottom: 40px;
+    padding-top: 70px;
+    transition: 1s;
+    /*호버시 전환효과 처리 */
 }
-main section article .inner .txt h2::after { /*h2요소 하단 꾸밈 효과*/
-	content: "";
-	/* display: block; */
-	width: 40px;
-	height: 2px;
-	background: #777;
-	margin-top: 20px;
-	/* transition: 1.5s; */
+
+main section article .inner .txt h2::after {
+    /*h2요소 하단 꾸밈 효과*/
+    content: "";
+    /* display: block; */
+    width: 40px;
+    height: 2px;
+    background: #777;
+    margin-top: 20px;
+    /* transition: 1.5s; */
 }
+
 main section article .inner .txt p {
-	font: 14px/1.4 "arial";
-	color: #999;
+    font: 14px/1.4 "arial";
+    color: #999;
 }
+
 main section article .inner figure {
-	width: 100%;
-	height: 15vh;
-	background: #777;
-	overflow: hidden;
-	box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
-	filter: saturate(10%); /*영상박스의 채도를 낮춤*/
-	transform-origin: left center; /*왼쪽 방향 기준으로 변형이 일어나도록 중심축 변경*/
-	transition: 1s;
+    width: 100%;
+    height: 15vh;
+    background: #777;
+    overflow: hidden;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+    filter: saturate(10%);
+    /*영상박스의 채도를 낮춤*/
+    transform-origin: left center;
+    /*왼쪽 방향 기준으로 변형이 일어나도록 중심축 변경*/
+    transition: 1s;
 }
+
 main section article:hover .inner figure {
-	height: 25vh;
-	filter: saturate(120%);
-	transform: translateY(3vh);
+    height: 25vh;
+    filter: saturate(120%);
+    transform: translateY(3vh);
 }
 
 
 main section article .inner figure video {
-	width: 100%;
-	height: 100%;
-	object-fit: cover; /*영상이 figure 영역안에 꽉 차도록 설정*/
-	transform: scale(1.1); /*영상 가장자리의 여백을 숨기기위해 약간 확대*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /*영상이 figure 영역안에 꽉 차도록 설정*/
+    transform: scale(1.1);
+    /*영상 가장자리의 여백을 숨기기위해 약간 확대*/
 }
 
 
@@ -182,141 +224,207 @@ main section article .inner figure video {
 
 
 main section article:hover .inner .txt {
-	width: 75%;
+    width: 75%;
 }
+
 main section article:hover .inner .txt h2 {
-	font-size: 5vw;
-	
+    font-size: 5vw;
+
 }
+
 main section article:hover .inner .txt h2::after {
-	width: 120px;
-	background: orange;
+    width: 120px;
+    background: orange;
 }
-
-
 
 
 
 
 main aside {
-	
-	width: 100%;
-	height: 100vh;
-	background: #222;
-	position: absolute;
-	top: 0px;
-	left: -100%; /*왼쪽 화면 바깥에 배치*/
-	opacity: 0; /*투명도 0으로 비활성화*/
-	z-index: 2; /*2로 설정하며 section은 덮고 h1과 nav는 aside 위쪽에 배치*/
-	padding: 20vh 7vw 14vh 20vw;
-	display: flex; 
-	justify-content: space-between; /*자식 요소인 .txt와 figure를 좌우 양 끝에 배치 */
-	transition: 1s; /*전환효과 설정*/
-}
-main aside.on { /*클래스 on이 붙으면*/
-	opacity: 1;
-	left: 0%; /*왼쪽 바깥에서 화면 안쪽으로 이동하도록 설정*/
-}
-main aside .txt {
-	width: 25%;
-	height: 100%;
-}
-main aside .txt h3 {
-	font: normal 6vw/1 "Alegreya Sans SC";
-	color: #ddd;
-	margin-bottom: 20px;
-}
-main aside .txt p {
-	font: 1.1vw/1.3 "arial";
-	color: #666;
-	margin-bottom: 60px;
-}
-main aside .txt span {
-	cursor: pointer;
-	color: orange;
-}
-main aside figure {
-	width: 72%;
-	height: 100%;
-}
-main aside figure video {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+
+    width: 100%;
+    height: 100vh;
+    background: #222;
+    position: absolute;
+    top: 0px;
+    left: -100%;
+    /*왼쪽 화면 바깥에 배치*/
+    opacity: 0;
+    /*투명도 0으로 비활성화*/
+    z-index: 2;
+    /*2로 설정하며 section은 덮고 h1과 nav는 aside 위쪽에 배치*/
+    padding: 20vh 7vw 14vh 20vw;
+    display: flex;
+    justify-content: space-between;
+    /*자식 요소인 .txt와 figure를 좌우 양 끝에 배치 */
+    transition: 1s;
+    /*전환효과 설정*/
 }
 
+main aside.on {
+    /*클래스 on이 붙으면*/
+    opacity: 1;
+    left: 0%;
+    /*왼쪽 바깥에서 화면 안쪽으로 이동하도록 설정*/
+}
+
+main aside .txt {
+    width: 25%;
+    height: 100%;
+}
+
+main aside .txt h3 {
+    font: normal 6vw/1 "Alegreya Sans SC";
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+main aside .txt p {
+    font: 1.1vw/1.3 "arial";
+    color: #666;
+    margin-bottom: 60px;
+}
+
+main aside .txt span {
+    cursor: pointer;
+    color: orange;
+}
+
+main aside figure {
+    width: 72%;
+    height: 100%;
+}
+
+main aside figure video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 검색박스 */
+.search-container {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 30px;
+	/* 패딩을 더 크게 조정하여 검색창 크기 조절 */
+	border-radius: 10px;
+	/* 둥근 테두리 반경 설정 */
+	z-index: 9999999999999999;
+
+}
+
+
+.search-container input[type="text"] {
+	width: 400px;
+	/* 넓이를 크게 조정 */
+	padding: 15px 0px 15px 15px;	
+	border: none;
+	background-color: transparent;
+	color: white;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.5);	
+	margin-right: 20px;	
+	font-size: 18px;	
+	outline: none;
+}
+.search-container>div {
+    position: relative;
+}
+.search-container>div i {
+    position: absolute;
+    right: 30px;
+    top: 20px;font-size: 20px;
+    color: rgba(255,255,255,0.3);
+}
 
 /* 기존 CSS 코드 */
 
-@media only screen and (max-width: 768px) {
-	body {background: #333;}
-	main {
-	  flex-direction: column;
-	}
-	main header,
-	main section {
-	  width: 100%;
-	}
-	main header {
-	  padding: 5vh 5vw;
-	  align-items: center;
-	  justify-content: center;
-	  text-align: center;
-	}
-	main header h1 i {
-	  font-size: 10vw;
-	  margin-bottom: 10px;
-	}
-	main header h1 span {
-	  font-size: 3vw;
-	}
-	main nav {
-	  position: static;
-	  margin-top: 10px;
-	  display: flex;
-	  justify-content: center;
-	}
-	main nav ul li a {
-	  font-size: 14px;
-	  margin-right: 20px;
-	}
-	main section {
-	  padding-top: 10vh;
-	  display: flex;
-	  flex-direction: column;
-	  align-items: center;
-	}
-	main section article {
-	  width: 90%; /* 전체 너비의 90%로 설정 */
-	  margin-bottom: 40px; /* 아티클 간격 조정 */
-	}
-	main section article .inner .txt h2 {
-	  font-size: 3.5vw;
-	  margin-bottom: 30px;
-	}
-	main section article .inner .txt p {
-	  font-size: 12px;
-	}
-	main section article .inner figure {
-	  height: 20vh;
-	}
-	main section article .inner figure video {
-	  transform: scale(1);
-	}
-	main aside {
-	display: none;
-	}
-	address {display: none;}
-	 /* 비디오 영역의 배경색을 투명하게 설정 */
-    article .inner figure {
-        background-color: transparent;
+@media only screen and (max-width: 760px) {
+    body {
+        background: #333;
     }
-    
-    /* 비디오를 모바일에서 기본 비디오 플레이어로 표시 */
-    article .inner figure video {
-        display: block;
+
+    main {
+        flex-direction: column;
+    }
+
+    main header,
+    main section {
         width: 100%;
-        height: auto;
     }
-  }
-  
+
+    main header {
+        padding: 5vh 5vw;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    main header h1 i {
+        font-size: 10vw;
+        margin-bottom: 10px;
+    }
+
+    main header h1 span {
+        font-size: 3vw;
+    }
+
+    main nav {
+        position: static;
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    main nav ul li a {
+        font-size: 14px;
+        margin-right: 20px;
+    }
+
+    main section {
+        padding-top: 10vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-left: 5vw;
+        /* 추가 */
+    }
+
+    main section article {
+        width: 90%;
+        /* 전체 너비의 90%로 설정 */
+        margin-bottom: 20px;
+        /* 아티클 간격 조정 */
+    }
+
+    main section article .inner .txt h2 {
+        font-size: 3.5vw;
+        margin-bottom: 30px;
+    }
+
+    main section article .inner .txt p {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    main section article .inner figure {
+        height: 25vh;
+    }
+
+    main section article .inner figure video {
+        transform: scale(1.5);
+    }
+
+    main aside {
+        display: none;
+    }
+
+    address {
+        display: none;
+    }
+
+
+}
