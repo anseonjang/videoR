@@ -307,5 +307,16 @@ main aside figure video {
 	display: none;
 	}
 	address {display: none;}
+	 /* 비디오 영역의 배경색을 투명하게 설정 */
+    article .inner figure {
+        background-color: transparent;
+    }
+    
+    /* 비디오를 모바일에서 기본 비디오 플레이어로 표시 */
+    article .inner figure video {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
   }
   
